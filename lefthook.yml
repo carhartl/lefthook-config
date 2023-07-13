@@ -2,7 +2,7 @@
 commit-msg:
   commands:
     lint-commit-msg:
-      run: npx --yes commitlint --config ~/.commitlint.config.js --edit
+      run: npx --yes commitlint --config .commitlint.config.js --edit
 pre-commit:
   parallel: true
   commands:
