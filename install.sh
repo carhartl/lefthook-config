@@ -1,5 +1,10 @@
 #!/bin/sh
 
+if ! [ -d .git ]; then
+    echo "Must run in a git repository!"
+    exit 1
+fi
+
 brew install \
     golangci-lint \
     hadolint \
