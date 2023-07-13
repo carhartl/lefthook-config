@@ -21,9 +21,19 @@ cat <<EOF >lefthook.yml
 remote:
   git_url: https://github.com/carhartl/lefthook-config
 EOF
-cp commitlint.config.js .commitlint.config.js
-
 echo lefthook.yml >>.git/info/exclude
+
+cat <<EOF >.commitlint.config.js
+module.exports = {
+  rules: {
+    "body-case": [2, "always", "sentence-case"],
+    "body-leading-blank": [2, "always"],
+    "header-case": [2, "always", "sentence-case"],
+    "header-full-stop": [2, "never", "."],
+    "header-max-length": [2, "always", 50],
+  },
+};
+EOF
 echo .commitlint.config.js >>.git/info/exclude
 
 lefthook install
