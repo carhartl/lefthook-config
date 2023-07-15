@@ -9,7 +9,7 @@ pre-commit:
     golangci:
       tags: lint go
       glob: "*.go"
-      run: golangci-lint run ./...
+      run: find $PWD -type d -exec test -f '{}'/go.mod \; -exec golangci-lint run {}/... \;
     hadolint:
       tags: lint iac
       glob: "Dockerfile"
