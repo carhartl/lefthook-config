@@ -9,7 +9,10 @@ pre-commit:
     golangci:
       tags: lint go
       glob: "*.go"
-      run: find $PWD -type d -exec test -f '{}'/go.mod \; -exec golangci-lint run {}/... \;
+      # `golangci-lint run` requires all files to be in the same directory
+      # when passing it named files, thus in order to only lint staged files
+      # in the pre-commit hook linting them one by one...
+      run: for file in {staged_files}; do golangci-lint run $file; done
     hadolint:
       tags: lint iac
       glob: "Dockerfile"
