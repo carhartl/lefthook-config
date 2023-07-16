@@ -15,7 +15,7 @@ pre-commit:
       run: for file in {staged_files}; do golangci-lint run $file; done
     hadolint:
       tags: lint iac
-      glob: "Dockerfile"
+      glob: "Dockerfile*"
       run: hadolint {staged_files} --failure-threshold warning
     prettier:
       tags: style glue
