@@ -23,7 +23,7 @@ pre-commit:
       run: prettier --check {staged_files}
     shellcheck:
       tags: lint glue
-      glob: "*.sh"
+      glob: "*.{bash,sh}"
       run: shellcheck {staged_files}
     shfmt:
       tags: style glue
