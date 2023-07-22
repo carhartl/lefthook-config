@@ -1,5 +1,13 @@
 #!/bin/sh
 
+_fail() {
+	printf "\033[0;31m==> %s\033[0m\n\n" "$1"
+}
+
+_success() {
+	printf "\033[0;32m==> %s\033[0m\n\n" "$1"
+}
+
 _install_go_deps() {
 	brew install golangci-lint
 	go install github.com/rakyll/gotest@latest
@@ -10,7 +18,7 @@ _install_terraform_deps() {
 }
 
 if ! [ -d .git ]; then
-	echo "Must run in a git repository!"
+	_fail "Must run in a git repository!"
 	exit 1
 fi
 
@@ -64,3 +72,5 @@ EOF
 echo .commitlint.config.js >>.git/info/exclude
 
 lefthook install
+
+_success "Git hooks installed successfully!"
