@@ -1,0 +1,15 @@
+---
+extends:
+  - base.yml
+pre-commit:
+  parallel: true
+  commands:
+    terraform-fmt:
+      tags: style terraform
+      glob: "*.{tf,tfvars}"
+      run: terraform fmt -check -diff {staged_files}
+    tflint:
+      tags: lint terraform
+      glob: "*.{tf,tfvars}"
+      run: |
+        for file in {staged_files}; do tflint "$file"; done

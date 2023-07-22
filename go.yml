@@ -1,0 +1,19 @@
+---
+extends:
+  - base.yml
+pre-commit:
+  parallel: true
+  commands:
+    golangci-lint:
+      tags: lint go
+      glob: "*.go"
+      # `golangci-lint run` requires all files to be in the same package
+      # when passing it named files, thus in order to only lint staged files
+      # in the pre-commit hook linting them one by one...
+      run: for file in {staged_files}; do golangci-lint run $file; done
+pre-push:
+  parallel: true
+  gotest:
+    tags: test go
+    glob: "*.go"
+    run: gotest ./...
