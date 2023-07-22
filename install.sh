@@ -1,5 +1,10 @@
 #!/bin/sh
 
+readonly DEBUG="${DEBUG:-unset}"
+if [ "${DEBUG}" != unset ]; then
+	set -x
+fi
+
 _fail() {
 	printf "\033[0;31m==> %s\033[0m\n\n" "$1"
 }
