@@ -12,7 +12,7 @@ pre-commit:
       run: hadolint {staged_files} --failure-threshold warning
     prettier:
       tags: style glue
-      glob: "*.{md,yaml,yml}"
+      glob: "*.{json,md,yaml,yml}"
       run: prettier --check {staged_files}
     shellcheck:
       tags: lint shell
