@@ -15,6 +15,7 @@ if ! [ -d .git ]; then
 fi
 
 brew install \
+	actionlint \
 	hadolint \
 	lefthook \
 	prettier \
