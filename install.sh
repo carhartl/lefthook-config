@@ -1,11 +1,11 @@
 #!/bin/sh
 
-_install_go() {
+_install_go_deps() {
 	brew install golangci-lint
 	go install github.com/rakyll/gotest@latest
 }
 
-_install_terraform() {
+_install_terraform_deps() {
 	brew install terraform tflint
 }
 
@@ -27,14 +27,14 @@ BUNDLE_NAME="${1:-lefthook}"
 
 case "$BUNDLE_NAME" in
 "lefthook")
-	_install_go
-	_install_terraform
+	_install_go_deps
+	_install_terraform_deps
 	;;
 "go")
-	_install_go
+	_install_go_deps
 	;;
 "terraform")
-	_install_terraform
+	_install_terraform_deps
 	;;
 *)
 	_fail "Unknown bundle name, must be one of \"go\", \"terraform\"."
