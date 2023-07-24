@@ -55,13 +55,13 @@ case "$BUNDLE_NAME" in
 	;;
 esac
 
-cat <<EOF >lefthook.yml
+cat <<EOF >.lefthook.yaml
 ---
 remote:
   git_url: https://github.com/carhartl/lefthook-config
-  config: $BUNDLE_NAME.yml
+  config: $BUNDLE_NAME.yaml
 EOF
-echo lefthook.yml >>.git/info/exclude
+echo .lefthook.yaml >>.git/info/exclude
 
 cat <<EOF >.commitlint.config.js
 module.exports = {

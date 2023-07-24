@@ -1,6 +1,6 @@
 ---
 extends:
-  - base.yml
+  - base.yaml
 pre-commit:
   parallel: true
   commands:

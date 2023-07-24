@@ -1,0 +1,5 @@
+---
+extends:
+  - base.yaml
+  - go.yaml
+  - terraform.yaml
