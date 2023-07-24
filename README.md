@@ -7,7 +7,7 @@
 ### All in one
 
 ```bash
-curl -Lks https://raw.githubusercontent.com/carhartl/lefthook-config/main/install.sh | /bin/bash
+bash -c "$(curl --silent https://raw.githubusercontent.com/carhartl/lefthook-config/main/install.sh)"
 ```
 
 ### With Go scope
