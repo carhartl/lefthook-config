@@ -12,4 +12,4 @@ pre-commit:
       tags: lint terraform
       glob: "*.{tf,tfvars}"
       run: |
-        for file in {staged_files}; do tflint "$file"; done
+        for file in {staged_files}; do tflint --recursive --filter=$(basename "$file"); done
