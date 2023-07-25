@@ -17,7 +17,8 @@ pre-commit:
     prettier:
       tags: style glue
       glob: "*.{json,md,yaml,yml}"
-      run: prettier --check {staged_files}
+      stage_fixed: true
+      run: prettier --write {staged_files}
     shellcheck:
       tags: lint shell
       glob: "*.{bash,sh}"
@@ -25,7 +26,8 @@ pre-commit:
     shfmt:
       tags: style shell
       glob: "*.{bash,sh}"
-      run: shfmt -d {staged_files}
+      stage_fixed: true
+      run: shfmt -w {staged_files}
     yamllint:
       tags: lint yaml
       glob: "*.{yaml,yml}"
