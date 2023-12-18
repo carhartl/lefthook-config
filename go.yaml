@@ -12,7 +12,7 @@ pre-commit:
       # https://github.com/golangci/golangci-lint/issues/1574#issuecomment-804500358
       # https://github.com/golangci/golangci-lint/issues/2912
       #
-      # Thus linting the entire package of a staged files..
+      # Thus linting the entire package of a staged file..
       run: |
         packages=$(echo {staged_files} | xargs dirname | uniq)
         for package in $packages; do golangci-lint run "$package"; done
