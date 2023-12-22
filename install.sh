@@ -33,8 +33,8 @@ brew install \
 	lefthook \
 	prettier \
 	shellcheck \
+	shfmt \
 	yamllint
-go install mvdan.cc/sh/v3/cmd/shfmt@v3.7.0
 
 BUNDLE_NAME="${1:-lefthook}"
 
