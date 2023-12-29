@@ -1,0 +1,4 @@
+---
+remote:
+  git_url: https://github.com/carhartl/lefthook-config
+  config: lefthook.yaml

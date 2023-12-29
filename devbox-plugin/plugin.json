@@ -1,0 +1,27 @@
+{
+  "name": "lefthook",
+  "version": "",
+  "readme": "",
+  "__packages": [
+    "actionlint@latest",
+    "hadolint@latest",
+    "golangci-lint@latest",
+    "gotest@latest",
+    "nodePackages.prettier@latest",
+    "shellcheck@latest",
+    "shfmt@latest",
+    "terraform@latest",
+    "tflint@latest",
+    "yamllint@latest"
+  ],
+  "create_files": {
+    "{{ .DevboxDirRoot }}/lefthook.yaml": "./config/lefthook.yaml",
+    "{{ .DevboxDirRoot }}/commitlint.config.js": "./config/commitlint.config.js"
+  },
+  "shell": {
+    "init_hook": [
+      "if ! [ -f .lefthook.yaml ]; then mv {{ .DevboxDirRoot }}/lefthook.yaml {{ .DevboxDirRoot }}/../.lefthook.yaml; echo .lefthook.yaml >>.git/info/exclude; fi",
+      "if ! [ -f .commitlint.config.js ]; then mv {{ .DevboxDirRoot }}/commitlint.config.js {{ .DevboxDirRoot }}/../.commitlint.config.js; echo .commitlint.config.js >>.git/info/exclude; fi"
+    ]
+  }
+}
