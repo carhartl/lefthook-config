@@ -1,6 +1,6 @@
 {
   "name": "lefthook",
-  "version": "",
+  "version": "0.0.1",
   "readme": "",
   "__packages": [
     "actionlint@latest",
