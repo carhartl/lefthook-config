@@ -19,6 +19,7 @@
             pkgs.golangci-lint
             pkgs.gotest
             pkgs.hadolint
+            pkgs.lefthook
             pkgs.nodePackages.prettier
             pkgs.shellcheck
             pkgs.shfmt
