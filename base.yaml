@@ -8,7 +8,18 @@ skip_output:
 commit-msg:
   commands:
     commitlint:
-      run: npx --yes commitlint --config .commitlint.config.js --edit
+      # Installing @well-crafted/commitlint-config globally serves as a workaround for
+      # achieving a zero config commitlint hook, for as long as
+      # https://github.com/conventional-changelog/commitlint/issues/613 isn't fixed.
+      #
+      # Once this issue is addressed it'll allow for a truly zero config conventional
+      # commits check, like so:
+      #
+      # npx --yes --package="@commitlint/cli" --package="@well-crafted/commitlint-config" \
+      #    commitlint --extends "@commitlint/config-conventional" --edit
+      run: |
+        [ ! -d "$(npm -g root)/@well-crafted/commitlint-config" ] && npm i -g @well-crafted/commitlint-config
+        npx --yes commitlint --extends "@well-crafted/commitlint-config" --edit
 pre-commit:
   parallel: true
   commands:

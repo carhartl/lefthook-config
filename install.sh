@@ -63,19 +63,6 @@ remote:
 EOF
 echo .lefthook.yaml >>.git/info/exclude
 
-cat <<EOF >.commitlint.config.js
-module.exports = {
-  rules: {
-    "body-case": [2, "always", "sentence-case"],
-    "body-leading-blank": [2, "always"],
-    "header-case": [2, "always", "sentence-case"],
-    "header-full-stop": [2, "never", "."],
-    "header-max-length": [2, "always", 50],
-  },
-};
-EOF
-echo .commitlint.config.js >>.git/info/exclude
-
 lefthook install
 
 _success "Git hooks installed successfully!"
