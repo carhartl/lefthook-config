@@ -57,9 +57,10 @@ esac
 
 cat <<EOF >.lefthook.yaml
 ---
-remote:
-  git_url: https://github.com/carhartl/lefthook-config
-  config: $BUNDLE_NAME.yaml
+remotes:
+  - git_url: https://github.com/carhartl/lefthook-config
+    configs:
+      - $BUNDLE_NAME.yaml
 EOF
 echo .lefthook.yaml >>.git/info/exclude
 
