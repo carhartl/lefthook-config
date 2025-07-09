@@ -13,5 +13,9 @@ pre-commit:
       tags: lint terraform
       glob: "*.{tf,tfvars}"
       stage_fixed: true
+      # NOTE: with --chdir must use TFLINT_CONFIG_FILE env var for pointing TFLint to config file
+      # at say the project root..
       run: |
-        for file in {staged_files}; do tflint --fix --recursive --filter=$(basename "$file"); done
+        for file in {staged_files}; do
+          tflint --chdir=$(dirname "$file") --filter=$(basename "$file") --fix
+        done
