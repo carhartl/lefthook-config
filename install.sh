@@ -36,32 +36,42 @@ brew install \
 	shfmt \
 	yamllint
 
-BUNDLE_NAME="${1:-lefthook}"
-
-case "$BUNDLE_NAME" in
-"lefthook")
-	_install_go_deps
-	_install_terraform_deps
-	;;
-"go")
-	_install_go_deps
-	;;
-"terraform")
-	_install_terraform_deps
-	;;
-*)
-	_fail "Unknown bundle name, must be one of \"go\", \"terraform\"."
-	exit 1
-	;;
-esac
-
 cat <<EOF >.lefthook.yaml
 ---
 remotes:
   - git_url: https://github.com/carhartl/lefthook-config
     configs:
-      - $BUNDLE_NAME.yaml
+      - base.yaml
 EOF
+
+BUNDLE_NAME="${1:-all}"
+case "$BUNDLE_NAME" in
+"all")
+	_install_go_deps
+	_install_terraform_deps
+	cat <<EOF >>.lefthook.yaml
+      - go.yaml
+      - terraform.yaml
+EOF
+	;;
+"go")
+	_install_go_deps
+	cat <<EOF >>.lefthook.yaml
+      - go.yaml
+EOF
+	;;
+"terraform")
+	_install_terraform_deps
+	cat <<EOF >>.lefthook.yaml
+      - terraform.yaml
+EOF
+	;;
+*)
+	_fail "Unknown bundle name, must be one of: \"all\",  \"go\", \"terraform\"."
+	exit 1
+	;;
+esac
+
 echo .lefthook.yaml >>.git/info/exclude
 
 lefthook install
