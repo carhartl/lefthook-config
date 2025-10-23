@@ -50,3 +50,10 @@ pre-commit:
       glob: "*.{yaml,yml}"
       run: |
         yamllint -d "{extends: default, rules: {line-length: {max: 120}, comments: disable}}" {staged_files}
+pre-push:
+  parallel: true
+  commands:
+    check-leaks:
+      tags: security
+      run: |
+        gitleaks git --log-opts="$(git merge-base origin/main HEAD)..HEAD" --no-banner --redact --verbose

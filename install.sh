@@ -29,6 +29,7 @@ fi
 
 brew install \
 	actionlint \
+	gitleaks \
 	hadolint \
 	lefthook \
 	prettier \
