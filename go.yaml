@@ -16,7 +16,8 @@ pre-commit:
         for package in $packages; do golangci-lint run "$package"; done
 pre-push:
   parallel: true
-  gotest:
-    tags: test go
-    glob: "*.go"
-    run: gotest ./...
+  commands:
+    gotest:
+      tags: test go
+      glob: "*.go"
+      run: gotest ./...
