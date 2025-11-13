@@ -5,15 +5,7 @@ pre-commit:
     golangci-lint:
       tags: lint go
       glob: "*.go"
-      # Cannot easily run `golangci-lint run` on single files as imported types from the
-      # same package will appear as undefined and cause a typecheck compilation error.
-      # https://github.com/golangci/golangci-lint/issues/1574#issuecomment-804500358
-      # https://github.com/golangci/golangci-lint/issues/2912
-      #
-      # Thus linting the entire package of a staged file..
-      run: |
-        packages=$(echo {staged_files} | xargs dirname | uniq)
-        for package in $packages; do golangci-lint run "$package"; done
+      run: golangci-lint run ./...
 pre-push:
   parallel: true
   commands:
