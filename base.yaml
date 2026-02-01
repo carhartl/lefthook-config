@@ -43,7 +43,11 @@ pre-commit:
       tags: lint yaml
       glob: "*.{yaml,yml}"
       run: |
-        yamllint -d "{extends: default, rules: {line-length: {max: 120}, comments: disable}}" {staged_files}
+        if [ -f .yamllint ]; then
+          yamllint {staged_files}
+        else
+          yamllint -d "{extends: default, rules: {line-length: {max: 120}, comments: disable}}" {staged_files}
+        fi
 pre-push:
   parallel: true
   commands:
