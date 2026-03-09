@@ -2,7 +2,7 @@
 commit-msg:
   commands:
     commitlint:
-      run: npx --yes commitlint --extends @well-crafted/commitlint-config --edit
+      run: npx --yes commitlint@20.4.3 --extends @well-crafted/commitlint-config --edit
 pre-commit:
   parallel: true
   commands:
